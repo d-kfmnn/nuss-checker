@@ -13,7 +13,7 @@ For further information we refer to the paper:
 
 Daniela Kaufmann, Armin Biere. 
  [`Nullstellensatz-Proofs for Multiplier Verification.`](http://fmv.jku.at/papers/KaufmannBiere-CASC20.pdf)
-In Proc. Computer Algebra in Scientific Computing, pages 368-389, IEEE 2019.
+In Proc. Computer Algebra in Scientific Computing, pages 368-389, Springer 2020.
 
 Usage: 
 ----------------------------------
