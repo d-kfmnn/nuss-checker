@@ -20,7 +20,7 @@ Usage:
 
 `./nusschecker [<option> ... ]  [<polynomials> <cofactor>] [<spec>]`
 
-where <option> is one of the following
+where `<option>` is one of the following
 
   
   `-h | --help            print this command line option summary and exit`  
