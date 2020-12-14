@@ -1,7 +1,7 @@
 /*------------------------------------------------------------------------*/
 /* Copyright (C) 2020, Daniela Kaufmann, Johannes Kepler University Linz    */
 /*------------------------------------------------------------------------*/
-#define VERSION "001"
+#define VERSION "002"
 
 static const char * usage =
 "nusschecker [ <option> ... ]  [ <polynomials> <cofactor>] [<spec>]\n"
@@ -15,6 +15,8 @@ static const char * usage =
 "  -v | --verbose         get verbose output on number of checked inferences (beep every 500 rules)\n"
 "\n"
 "  -e | --use-exponents   turn off implicit reduction of exponents\n"
+"\n"
+"  -gf2                   calculate modulo 2\n"
 "\n"
 "  -a0                    addition in tree approach, depth first\n"
 "  -a1                    addition in tree approach, breadth first\n"
@@ -58,6 +60,7 @@ static int verbose = 0;
 static int exponents = 0;
 static int addition = 0;
 static int sort = 0;
+static int gf2 = 0;
 
 static char * poly_file_name = 0;
 static char * cofactor_file_name = 0;
@@ -754,6 +757,9 @@ static Monomial * add_monomials (Monomial * a, Monomial * b) {
   assert (a->term == b->term);
   Monomial * res = allocate_monomial ();
   mpz_add(res->coeff, a->coeff, b->coeff);
+  if(gf2){
+    mpz_mod_ui(res->coeff, res->coeff, 2);    
+  }
   if (mpz_cmp_si(res->coeff, 0) == 0) res->term = 0;
   else res->term = copy_term(a->term);
 
@@ -1655,6 +1661,8 @@ int main (int argc, char ** argv) {
     else if (!strcmp (argv[i], "-e") ||
              !strcmp (argv[i], "--use-exponents"))
       exponents = 1;
+    else if (!strcmp (argv[i], "-gf2"))
+      gf2 = 1;
     else if (!strcmp (argv[i], "-a0")){
       if(add_chosen++) die("cannot combine '-a0', '-a1', '-a2' or '-a3'");
       addition = 0;
