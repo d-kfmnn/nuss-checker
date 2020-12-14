@@ -31,6 +31,8 @@ where `<option>` is one of the following
 
   `-e | --use-exponents   turn off implicit reduction of exponents`  
 
+  `-gf2                   calculate modulo 2\n`
+   
   `-a0                    addition in tree approach, depth first (default)`  
   `-a1                    addition in tree approach, breadth first`  
   `-a2                    addition in sequence`  
